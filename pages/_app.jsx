@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 
-const GA_ID = G-F0S6W6SDR5
+const GA_ID = "G-F0S6W6SDR5"
 
 function sendPageView(url) {
   if (typeof window.gtag !== 'undefined') {
