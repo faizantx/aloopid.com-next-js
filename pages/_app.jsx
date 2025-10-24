@@ -1,29 +1,28 @@
-// pages/_app.tsx
-import type { AppProps } from 'next/app'
+// pages/_app.jsx
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import '../styles/globals.css' // if you have global styles
+import '../styles/globals.css' // optional if you have global styles
 
-const GA_ID = G-F0S6W6SDR5 // G-XXXXXXXXXX
+const GA_ID = G-F0S6W6SDR5
 
-function sendPageView(url: string) {
-  // @ts-ignore
-  window.gtag?.('event', 'page_view', { page_path: url })
+function sendPageView(url) {
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', 'page_view', { page_path: url })
+  }
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => sendPageView(url)
+    const handleRouteChange = (url) => sendPageView(url)
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => router.events.off('routeChangeComplete', handleRouteChange)
   }, [router.events])
 
   return (
     <>
-      {/* Load GA script */}
       {GA_ID && (
         <>
           <Script
