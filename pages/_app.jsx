@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import '../styles/globals.css' // optional if you have global styles
 
 const GA_ID = G-F0S6W6SDR5
 
